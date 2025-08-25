@@ -8,25 +8,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: '#E7F8FF',
-        cyanNeon: '#00E6FF',
-        cyanSoft: '#6FEAFF',
-        violetNeon: '#9A6CFF',
-        navyDeep: '#0b1220',
+        ink: '#1d1b18',        // deep brown-black for text on light panels
+        parchment: '#efe6d8',  // warm light base
+        clay: '#caa27b',       // warm accent
+        terracotta: '#b56b3f', // stronger accent
+        cocoa: '#6a4a3c',      // deep accent
+        night: '#0f0d0b',      // page bg
       },
       boxShadow: {
-        skeuo: '8px 8px 20px rgba(0,0,0,0.5), -8px -8px 20px rgba(255,255,255,0.04), 0 0 24px rgba(0,230,255,0.08)',
-        skeuoInset: 'inset 8px 8px 16px rgba(0,0,0,0.5), inset -8px -8px 16px rgba(255,255,255,0.04)'
-      },
-      backgroundImage: {
-        leather: "radial-gradient(circle at 25% 25%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 60%), radial-gradient(circle at 75% 75%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 60%)",
+        skeuo: '10px 10px 26px rgba(0,0,0,0.35), -8px -8px 22px rgba(255,255,255,0.25)',
+        skeuoInset: 'inset 10px 10px 18px rgba(0,0,0,0.25), inset -10px -10px 18px rgba(255,255,255,0.35)'
       },
       borderRadius: {
         soft: '22px',
       },
-      backdropBlur: {
-        xs: '2px',
-      }
     },
   },
   plugins: [],

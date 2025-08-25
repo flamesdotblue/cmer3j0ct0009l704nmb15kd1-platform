@@ -2,6 +2,8 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
+const BG = 'https://cdn.dribbble.com/userupload/21135707/file/original-aa36ba5799d82ee446dd365c5ec88cb1.jpg?resize=752x564&vertical=center'
+
 export default function Page() {
   const [power, setPower] = useState(true)
   const [volume, setVolume] = useState(60)
@@ -12,11 +14,11 @@ export default function Page() {
       <div className="relative w-full max-w-5xl glass rounded-3xl p-6 md:p-10 canvas-grain">
         <header className="flex items-center gap-4">
           <div className="size-12 rounded-full skeuo-button grid place-items-center" aria-hidden>
-            <span className="block size-3 rounded-full" style={{background: 'radial-gradient(circle, rgba(0,230,255,1) 0%, rgba(0,230,255,0.4) 60%, rgba(0,230,255,0.1) 100%)', boxShadow: '0 0 12px rgba(0,230,255,0.6)'}} />
+            <span className="block size-3 rounded-full" style={{background: 'radial-gradient(circle, #b56b3f 0%, rgba(181,107,63,0.35) 70%, rgba(181,107,63,0.1) 100%)'}} />
           </div>
-          <div className="text-white/90">
-            <h1 className="text-2xl md:text-3xl font-semibold tracking-wide neon-cyan">Skeuomorphism Studio</h1>
-            <p className="text-sm md:text-base text-white/70 -mt-0.5">Tactile controls with neon-cyber look</p>
+          <div className="text-ink/90">
+            <h1 className="text-2xl md:text-3xl font-semibold tracking-wide">Skeuomorphic Studio</h1>
+            <p className="text-sm md:text-base text-ink/70 -mt-0.5">Warm clay/leather inspired controls</p>
           </div>
           <div className="ml-auto flex items-center gap-3">
             <PowerToggle on={power} onToggle={() => setPower(p => !p)} />
@@ -40,7 +42,7 @@ export default function Page() {
                   const level = Math.max(0, Math.min(100, volume + (Math.sin((i+1)/2)+1)*20 - i*3));
                   return (
                     <div key={i} className="flex-1 flex items-end">
-                      <div className="w-full rounded-t-sm" style={{height: `${Math.round(level)}%`, background: `linear-gradient(180deg, #00E6FF 0%, #6FEAFF 50%, #9A6CFF 100%)`, boxShadow: 'inset 0 0 6px rgba(0,0,0,0.45), 0 0 10px rgba(0,230,255,0.2)'}}/>
+                      <div className="w-full rounded-t-sm" style={{height: `${Math.round(level)}%`, background: `linear-gradient(180deg, #caa27b 0%, #b56b3f 60%, #6a4a3c 100%)`, boxShadow: 'inset 0 0 6px rgba(0,0,0,0.25)'}}/>
                     </div>
                   )
                 })}
@@ -51,18 +53,18 @@ export default function Page() {
           <Panel title="Volume">
             <div className="flex flex-col items-center gap-4">
               <Dial value={volume} onChange={setVolume} />
-              <span className="text-white/80 text-sm">{volume}%</span>
+              <span className="text-ink/80 text-sm">{volume}%</span>
             </div>
           </Panel>
         </section>
 
-        <footer className="mt-10 flex items-center justify-between text-white/70 text-xs">
+        <footer className="mt-10 flex items-center justify-between text-ink/70 text-xs">
           <span>Background art courtesy of Dribbble upload (for demo only)</span>
-          <a className="underline hover:text-white" href="https://dribbble.com/" target="_blank" rel="noreferrer">Source</a>
+          <a className="underline hover:text-ink" href="https://dribbble.com/" target="_blank" rel="noreferrer">Source</a>
         </footer>
 
-        <div className="pointer-events-none select-none absolute -right-10 -bottom-10 opacity-40 hidden lg:block">
-          <Image alt="Decor" src="https://cdn.dribbble.com/userupload/6864415/file/original-03842759e0b92248098f28aebd63de5f.png?resize=1504x846&vertical=center" width={600} height={338} className="rounded-2xl shadow-skeuo"/>
+        <div className="pointer-events-none select-none absolute -right-10 -bottom-10 opacity-60 hidden lg:block">
+          <Image alt="Decor" src={BG} width={500} height={375} className="rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)]"/>
         </div>
       </div>
     </main>
@@ -73,8 +75,8 @@ function Panel({ title, children }: { title: string, children: React.ReactNode }
   return (
     <div className="rounded-soft skeuo-surface p-4 md:p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-cyanNeon drop-shadow">{title}</h2>
-        <div className="text-[10px] text-white/70 px-2 py-0.5 rounded-full skeuo-emboss">Mk II</div>
+        <h2 className="text-lg font-semibold text-[color:var(--accent)] drop-shadow">{title}</h2>
+        <div className="text-[10px] text-ink/60 px-2 py-0.5 rounded-full skeuo-emboss">Mk II</div>
       </div>
       <div className="skeuo-emboss rounded-xl p-4 bg-transparent">
         {children}
@@ -86,10 +88,10 @@ function Panel({ title, children }: { title: string, children: React.ReactNode }
 function KnobButton({label, active, onClick}:{label:string, active?:boolean, onClick?:()=>void}){
   return (
     <button onClick={onClick} className="group flex flex-col items-center gap-2">
-      <div className={`size-16 skeuo-button grid place-items-center ${active ? 'ring-2 ring-cyanNeon' : ''}`}> 
-        <div className={`size-2 rounded-full`} style={{background: active ? 'radial-gradient(circle, rgba(0,230,255,1) 0%, rgba(0,230,255,0.4) 60%, rgba(0,230,255,0.1) 100%)' : '#4b5563', boxShadow: active ? '0 0 10px rgba(0,230,255,0.5)' : 'none'}}></div>
+      <div className={`size-16 skeuo-button grid place-items-center ${active ? 'ring-2 ring-[color:var(--accent)]' : ''}`}> 
+        <div className={`size-2 rounded-full`} style={{background: active ? 'radial-gradient(circle, var(--accent) 0%, rgba(181,107,63,0.35) 70%, rgba(181,107,63,0.1) 100%)' : '#a8a29e'}}></div>
       </div>
-      <span className={`text-xs tracking-wide ${active ? 'text-cyanSoft' : 'text-white/70'}`}>{label}</span>
+      <span className={`text-xs tracking-wide ${active ? 'text-[color:var(--accent)]' : 'text-ink/70'}`}>{label}</span>
     </button>
   )
 }
@@ -100,7 +102,7 @@ function PowerToggle({on, onToggle}:{on:boolean, onToggle:()=>void}){
       <div className="skeuo-toggle" data-on={String(on)}>
         <div className="knob" />
       </div>
-      <span className={`uppercase text-xs tracking-widest ${on? 'text-cyanSoft':'text-white/60'}`}>{on? 'On':'Off'}</span>
+      <span className={`uppercase text-xs tracking-widest ${on? 'text-[color:var(--accent)]':'text-ink/60'}`}>{on? 'On':'Off'}</span>
     </button>
   )
 }
@@ -136,9 +138,9 @@ function Dial({ value, onChange }: { value: number; onChange: (v:number)=>void }
       }}
     >
       <div className="absolute inset-4 rounded-full skeuo-emboss"></div>
-      <div className="relative size-24 rounded-full" style={{background: 'linear-gradient(180deg, #334268 0%, #2a375b 60%, #1e2943 100%)', boxShadow: 'inset 3px 3px 6px rgba(0,0,0,0.55), inset -3px -3px 6px rgba(255,255,255,0.08), 0 0 20px rgba(0,230,255,0.12)'}}>
-        <div className="absolute left-1/2 top-1/2 h-10 w-1 bg-cyanSoft origin-bottom" style={{transform:`rotate(${angle}deg) translate(-50%,-100%)`, boxShadow: '0 0 10px rgba(0,230,255,0.5)'}} />
-        <div className="absolute inset-2 rounded-full" style={{boxShadow:'inset 0 0 2px rgba(0,0,0,0.6), inset 10px 10px 18px rgba(0,0,0,0.35), inset -10px -10px 18px rgba(255,255,255,0.06)'}}></div>
+      <div className="relative size-24 rounded-full" style={{background: 'linear-gradient(180deg, #f1e8da 0%, #e7dcc9 60%, #dbceb7 100%)', boxShadow: 'inset 3px 3px 6px rgba(0,0,0,0.18), inset -3px -3px 6px rgba(255,255,255,0.55)'}}>
+        <div className="absolute left-1/2 top-1/2 h-10 w-1 origin-bottom" style={{background: 'linear-gradient(180deg, var(--accent), #8e5531)', transform:`rotate(${angle}deg) translate(-50%,-100%)`, boxShadow: '0 0 2px rgba(0,0,0,0.25)'}} />
+        <div className="absolute inset-2 rounded-full" style={{boxShadow:'inset 0 0 2px rgba(0,0,0,0.18), inset 10px 10px 18px rgba(0,0,0,0.12), inset -10px -10px 18px rgba(255,255,255,0.5)'}}></div>
       </div>
     </div>
   )
