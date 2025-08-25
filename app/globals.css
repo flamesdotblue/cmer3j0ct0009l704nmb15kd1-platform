@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 :root{
-  --panel: #d5d1c9;
-  --panel-dark: #bdb7ab;
-  --panel-light: #f2efe9;
-  --ink: #24272f;
+  /* Dark neon cyber theme derived from the asset */
+  --panel: #1a2335;        /* body of controls */
+  --panel-dark: #121a2b;   /* deeper shadow tones */
+  --panel-light: #283453;  /* rim/specular */
+  --ink: #E7F8FF;          /* readable ink on dark */
+  --accent: #00E6FF;       /* cyan neon */
+  --accent-soft: #6FEAFF;  /* softer cyan */
+  --violet: #9A6CFF;       /* secondary glow */
 }
 
 html, body, :root {
@@ -15,9 +19,13 @@ html, body, :root {
 
 body {
   color: var(--ink);
-  background: #0e1116;
-  background-image: url('https://cdn.dribbble.com/userupload/6864415/file/original-03842759e0b92248098f28aebd63de5f.png?resize=1504x846&vertical=center');
-  background-size: cover;
+  background: #0b1220;
+  background-image:
+    radial-gradient(80% 60% at 20% 20%, rgba(0,230,255,0.08) 0%, rgba(0,230,255,0.0) 60%),
+    radial-gradient(90% 70% at 90% 10%, rgba(154,108,255,0.08) 0%, rgba(154,108,255,0.0) 60%),
+    linear-gradient(180deg, rgba(10,15,26,0.9), rgba(10,15,26,0.9)),
+    url('https://cdn.dribbble.com/userupload/6864415/file/original-03842759e0b92248098f28aebd63de5f.png?resize=1504x846&vertical=center');
+  background-size: cover, cover, cover, cover;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -25,22 +33,22 @@ body {
 /* Skeuomorphic helpers */
 .skeuo-surface {
   background: radial-gradient(120% 120% at 20% 15%, var(--panel-light) 0%, var(--panel) 45%, var(--panel-dark) 100%);
-  box-shadow: 12px 12px 28px rgba(0,0,0,0.45), -10px -10px 24px rgba(255,255,255,0.12), inset 0 0 1px rgba(255,255,255,0.35);
+  box-shadow: 12px 12px 28px rgba(0,0,0,0.55), -10px -10px 24px rgba(255,255,255,0.04), inset 0 0 1px rgba(255,255,255,0.12), 0 0 22px rgba(0,230,255,0.06);
 }
 
 .skeuo-emboss {
-  box-shadow: inset 8px 8px 16px rgba(0,0,0,0.35), inset -8px -8px 16px rgba(255,255,255,0.25);
+  box-shadow: inset 8px 8px 16px rgba(0,0,0,0.55), inset -8px -8px 16px rgba(255,255,255,0.06);
 }
 
 .skeuo-button {
-  background: linear-gradient(180deg, #d8d3c9 0%, #cfc9be 50%, #c4bdae 100%);
+  background: linear-gradient(180deg, #2e3a5a 0%, #24304d 50%, #1b243a 100%);
   border-radius: 9999px;
-  box-shadow: inset 2px 2px 3px rgba(255,255,255,0.5), inset -4px -8px 12px rgba(0,0,0,0.25), 4px 6px 14px rgba(0,0,0,0.45);
+  box-shadow: inset 2px 2px 3px rgba(255,255,255,0.12), inset -4px -8px 12px rgba(0,0,0,0.45), 4px 6px 14px rgba(0,0,0,0.65), 0 0 18px rgba(0,230,255,0.12);
   transition: transform .06s ease, box-shadow .06s ease;
 }
 .skeuo-button:active {
   transform: translateY(1px);
-  box-shadow: inset 6px 6px 14px rgba(0,0,0,0.35), inset -2px -2px 6px rgba(255,255,255,0.35);
+  box-shadow: inset 6px 6px 14px rgba(0,0,0,0.55), inset -2px -2px 6px rgba(255,255,255,0.12), 0 0 8px rgba(0,230,255,0.24);
 }
 
 .skeuo-toggle {
@@ -48,8 +56,8 @@ body {
   width: 64px;
   height: 36px;
   border-radius: 9999px;
-  background: linear-gradient(180deg, #cec8bb 0%, #bdb6a6 100%);
-  box-shadow: inset 4px 4px 10px rgba(0,0,0,0.35), inset -2px -2px 6px rgba(255,255,255,0.35);
+  background: linear-gradient(180deg, #27324f 0%, #1e2943 100%);
+  box-shadow: inset 4px 4px 10px rgba(0,0,0,0.55), inset -2px -2px 6px rgba(255,255,255,0.08);
 }
 .skeuo-toggle .knob {
   position: absolute;
@@ -58,8 +66,8 @@ body {
   width: 28px;
   height: 28px;
   border-radius: 9999px;
-  background: radial-gradient(100% 100% at 30% 30%, #ffffff 0%, #e6e2da 45%, #c2b9aa 100%);
-  box-shadow: 2px 3px 6px rgba(0,0,0,0.45), -2px -2px 4px rgba(255,255,255,0.6);
+  background: radial-gradient(100% 100% at 30% 30%, #cfefff 0%, #9bdff0 45%, #5fb9c9 100%);
+  box-shadow: 2px 3px 6px rgba(0,0,0,0.55), -2px -2px 4px rgba(255,255,255,0.15), 0 0 10px rgba(0,230,255,0.35);
   transition: left .18s ease;
 }
 .skeuo-toggle[data-on="true"] .knob {
@@ -67,10 +75,11 @@ body {
 }
 
 .glass {
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(10, 18, 32, 0.5);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid rgba(111,234,255,0.15);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(0,230,255,0.08);
 }
 
 /* Fine grid overlay for tactile feel */
@@ -79,6 +88,11 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.05)'%3E%3Cpath d='M0 60h120M60 0v120'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='rgba(111,234,255,0.06)'%3E%3Cpath d='M0 60h120M60 0v120'/%3E%3C/g%3E%3C/svg%3E");
   mix-blend-mode: overlay;
+}
+
+/* Neon utility */
+.neon-cyan {
+  text-shadow: 0 0 6px rgba(0,230,255,0.6), 0 0 18px rgba(0,230,255,0.35);
 }
